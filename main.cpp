@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-float width = 1720 , height = 1300 ;
+float width = 800, height = 600;
 
 using namespace sf;
 float getCenter(Text text) {
@@ -12,7 +12,6 @@ float getCenter(Text text) {
 
 bool backMusicIsActive = true;
 bool EfxIsActive = true;
-
 
 struct Menu {
   bool isActive = false;
@@ -145,8 +144,8 @@ struct bottomssprite {
 // gravity
 // slow computer: gravity =0.13 , moving speed = 3.5 , jumping =-5.5
 // fast computer: gravity = 0.035 moving speed = 0.5 , jumping =-0.9
-float gravity = 0.2 , fireboy_Vy = 0, watergirl_Vy = 0,
-      box_Vy = 0, vx = 4.5 , vy = -6.5 ;
+float gravity = 0.2, fireboy_Vy = 0, watergirl_Vy = 0, box_Vy = 0, vx = 4.5,
+      vy = -6.5;
 
 // for animation
 int x = 0, y = 0, a = 0, f = 0, g = 0;
@@ -182,7 +181,7 @@ void drawMenu(RenderWindow &window);
 void drawOptionsMenu(RenderWindow &window);
 void drawPauseMenu(RenderWindow &window);
 void drawLosingMenu(RenderWindow &window);
-void drawWinningMenu(RenderWindow &window,int time);
+void drawWinningMenu(RenderWindow &window, int time);
 void drawCreditesMenu(RenderWindow &window, Music &menumusic);
 void toggle(bool &var);
 void level1(RenderWindow &window);
@@ -354,7 +353,7 @@ void level1(RenderWindow &window) {
   backgroundTexture.loadFromFile("assets/background.png");
   Sprite backgroundPic(backgroundTexture);
   backgroundPic.setScale(1.0f, 0.978f);
-  backgroundPic.setPosition(-14.f , 10.f);
+  backgroundPic.setPosition(-14.f, 10.f);
   scaleSprite(backgroundPic, width, height);
 
   // box
@@ -376,7 +375,7 @@ void level1(RenderWindow &window) {
 
   // diamond 2
   Sprite redDiamond2(red1);
-  redDiamond2.setPosition(270,550); 
+  redDiamond2.setPosition(270, 550);
   scaleSprite(redDiamond2, width, height);
 
   // diamond 3
@@ -402,12 +401,12 @@ void level1(RenderWindow &window) {
   Sprite blueDiamond2(blue1);
   blueDiamond2.setPosition(980, 600);
   scaleSprite(blueDiamond2, width, height);
-  
+
   // diamond3
   Sprite blueDiamond3(blue1);
   blueDiamond3.setPosition(55, 210);
   scaleSprite(blueDiamond3, width, height);
-  
+
   // diamond4
   Sprite blueDiamond4(blue1);
   blueDiamond4.setPosition(940, 170);
@@ -858,7 +857,6 @@ void level1(RenderWindow &window) {
         }
       }
 
-
       // lever moving right and left
       {
         if ((fireboy.getGlobalBounds().intersects(lvr.getGlobalBounds())) ||
@@ -1145,7 +1143,6 @@ bool doesIntersect(Sprite &player, RectangleShape ground[]) {
   return false;
 }
 
-
 bool doesIntersectElevator(Sprite &player, Sprite &elevator1,
                            Sprite &elevator2) {
   // checking for collision with the right elevator
@@ -1426,7 +1423,7 @@ void Wmove(Sprite &watergirl, RectangleShape &rWall, RectangleShape &rWall2,
 
   if (watergirl_Vy > 0 && !doesIntersect(watergirl, ground) &&
       !doesIntersectBox(watergirl, box, ground) &&
-      !doesIntersectElevator(watergirl,elevator1,elevator2)&&
+      !doesIntersectElevator(watergirl, elevator1, elevator2) &&
       !Keyboard::isKeyPressed(Keyboard::D) &&
       !Keyboard::isKeyPressed(Keyboard::A)) {
     x++;
@@ -1619,7 +1616,7 @@ void drawWinningMenu(RenderWindow &window, int time) {
   meh.loadFromFile("assets/varsity_regular.ttf");
 
   Text gameTime;
-  if ( time <= 15){
+  if (time <= 15) {
     gameTime.setFont(font);
     gameTime.setFillColor(Color::Black);
     gameTime.setCharacterSize(static_cast<float>(90) / 1720 * width);
@@ -1634,13 +1631,12 @@ void drawWinningMenu(RenderWindow &window, int time) {
     gameTime.setFont(meh);
     gameTime.setCharacterSize(static_cast<float>(90) / 1720 * width);
     gameTime.setString("Rank: Yadobk");
-  } else{
+  } else {
     gameTime.setFont(meh);
     gameTime.setCharacterSize(1.1 * (45 * (height / 1300)));
     gameTime.setString("Rank: play again if you want to be humans");
   }
 
-  
   gameTime.setPosition((width - gameTime.getGlobalBounds().width) / 2,
                        ((500 * (height / 850))));
 
@@ -1729,25 +1725,25 @@ void drawCreditesMenu(RenderWindow &window, Music &menumusic) {
   creditesmenu.font.loadFromFile("assets/flame.ttf");
   creditesmenu.size = 7;
 
-  creditesmenu.mainmenu[0].setFillColor(Color{215,90,0});
+  creditesmenu.mainmenu[0].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[0].setString("OMAR EL-EZABY");
 
-  creditesmenu.mainmenu[1].setFillColor(Color{ 215,90,0 });
+  creditesmenu.mainmenu[1].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[1].setString("OMAR WATANY");
 
-  creditesmenu.mainmenu[2].setFillColor(Color{ 215,90,0 });
+  creditesmenu.mainmenu[2].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[2].setString("OMAR EL-HAKIM");
 
   creditesmenu.mainmenu[3].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[3].setString("OMAR TEBRY");
 
-  creditesmenu.mainmenu[4].setFillColor(Color{ 215,90,0 });
+  creditesmenu.mainmenu[4].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[4].setString("OMAR IBRAHIM");
 
-  creditesmenu.mainmenu[5].setFillColor(Color{ 215,90,0 });
+  creditesmenu.mainmenu[5].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[5].setString("AHMED ALI");
 
-  creditesmenu.mainmenu[6].setFillColor(Color{ 215,90,0 });
+  creditesmenu.mainmenu[6].setFillColor(Color{215, 90, 0});
   creditesmenu.mainmenu[6].setString("KAREEM ABDEEN");
 
   creditesmenu.setTextFont();
